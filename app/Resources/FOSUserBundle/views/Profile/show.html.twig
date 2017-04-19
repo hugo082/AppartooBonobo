@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+    <div>
+        <h1>Platforme d'amitié de Bonodo</h1>
+        <ul>
+            {% set if_null = 'Inconnue' %}
+            <li>{{ 'form.username'|trans }} : {{ app.user.username }}</li>
+            <li>{{ 'form.email'|trans }} : {{ app.user.email }}</li>
+            <li>Age : {{ app.user.age ? app.user.age : if_null }}</li>
+            <li>Famille : {{ app.user.family ? app.user.family : if_null  }}</li>
+            <li>Race : {{ app.user.race ? app.user.race : if_null  }}</li>
+            <li>Nourriture : {{ app.user.food ? app.user.food : if_null  }}</li>
+            <li>
+                <p>Mes amis : (<a href="{{ path('friends_add') }}">Ajouter</a>)</p>
+                <ul>
+                    {% for friend in app.user.myfriends %}
+                    <li>{{ friend.username }} (<a href="{{ path('friends_rm', {id : friend.id}) }}">Supprimer</a>)</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li>
+                <p>Ils me suivent :</p>
+                <ul>
+                    {% for friend in app.user.friendsWithMe %}
+                        <li>{{ friend.username }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+        <a href="{{ path('fos_user_profile_edit') }}">Editer</a>
+        <a href="{{ path('fos_user_security_logout') }}">Logout</a>
+    </div>
+{% endblock %}
+

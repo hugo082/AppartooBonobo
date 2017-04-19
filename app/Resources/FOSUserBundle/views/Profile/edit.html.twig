@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+    {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+
+    {{ form_row(form.age) }}
+    {{ form_row(form.family) }}
+    {{ form_row(form.race) }}
+    {{ form_row(form.food) }}
+
+    {{ form_row(form.current_password) }}
+    <div>
+        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+    </div>
+    {{ form_end(form) }}
+    <a href="{{ path('fos_user_profile_show') }}">Profile</a>
+{% endblock %}

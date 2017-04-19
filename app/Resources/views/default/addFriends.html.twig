@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+    {{ form_start(form, { 'action': path('friends_add'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+
+    {{ form_widget(form) }}
+    <div>
+        <input type="submit" value="Ajouter" />
+    </div>
+    {{ form_end(form) }}
+    <a href="{{ path('fos_user_profile_show') }}">Profile</a>
+{% endblock %}

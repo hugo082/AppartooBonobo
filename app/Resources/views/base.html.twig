@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<p style="color: blue">
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        {{ flashMessage }}<br>
+    {% endfor %}
+</p>
+<p style="color: orange">
+    {% for flashMessage in app.session.flashbag.get('warning') %}
+        {{ flashMessage }}<br>
+    {% endfor %}
+</p>
+<p style="color: red">
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        Erreur : {{ flashMessage }}<br>
+    {% endfor %}
+</p>
+
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
 </html>
